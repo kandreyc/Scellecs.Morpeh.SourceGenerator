@@ -1,11 +1,9 @@
 using System;
 using System.Text;
-using System.Threading;
-using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
 using System.Collections.Immutable;
 
-namespace Scellecs.Morpeh.SourceGenerator.Aspect.Core;
+namespace Scellecs.Morpeh.SourceGenerator.Core;
 
 public abstract class IncrementalGenerator<TData> : IIncrementalGenerator, ISourceFileGenerator
     where TData: struct
@@ -31,15 +29,15 @@ public abstract class IncrementalGenerator<TData> : IIncrementalGenerator, ISour
             .CreateSyntaxProvider(SyntaxFilter, (c, _) =>
             {
                 var symbol = c.SemanticModel.GetDeclaredSymbol(c.Node);
-                return Filter(symbol) ? symbol : null;
+                return Filter(symbol) ? (node: c.Node, symbol, model: c.SemanticModel) : default;
             })
-            .Where(symbol => symbol is not null)
-            .Select((symbol, _) => Select(symbol!));
+            .Where(t => t.symbol is not null)
+            .Select((t, _) => Select(t.node, t.symbol!, t.model));
 
         context.RegisterSourceOutput(provider.Collect(), GenerateInternal);
     }
 
-    protected abstract TData Select(ISymbol symbol);
+    protected abstract TData Select(SyntaxNode syntax, ISymbol symbol, SemanticModel model);
 
     private void GenerateInternal(SourceProductionContext context, ImmutableArray<TData> data)
     {

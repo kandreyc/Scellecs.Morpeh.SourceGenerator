@@ -1,4 +1,4 @@
-namespace Scellecs.Morpeh.SourceGenerator.Aspect.Model;
+namespace Scellecs.Morpeh.SourceGenerator.AspectGenerator.Model;
 
 public struct AspectData
 {

@@ -1,6 +1,4 @@
-using Microsoft.CodeAnalysis;
-
-namespace Scellecs.Morpeh.SourceGenerator.Aspect.Core.Extensions;
+namespace Scellecs.Morpeh.SourceGenerator.Core.Extensions;
 
 // ReSharper disable once InconsistentNaming
 public static class ITypeSymbolExtensions

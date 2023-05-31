@@ -1,4 +1,4 @@
-namespace Scellecs.Morpeh.SourceGenerator.Aspect.Core;
+namespace Scellecs.Morpeh.SourceGenerator.Core;
 
 public struct GeneratedFile
 {

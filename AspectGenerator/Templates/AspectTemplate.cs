@@ -1,8 +1,4 @@
-using System.Linq;
-using Scellecs.Morpeh.SourceGenerator.Aspect.Core;
-using Scellecs.Morpeh.SourceGenerator.Aspect.Model;
-
-namespace Scellecs.Morpeh.SourceGenerator.Aspect.Templates;
+namespace Scellecs.Morpeh.SourceGenerator.AspectGenerator.Templates;
 
 public static class AspectTemplate
 {
@@ -93,7 +89,7 @@ public partial struct {{data.Name}}
         string GetCtors(int indent)
         {
             var str = data.Arguments.Select(
-                static a => $"{Stash(a.NameCamelCase)} = world.GetStash<{a.NamePascalCase}>();"
+                static a => $"{Stash(a.NameCamelCase)} = world.GetStash<{a.NamePascalCase}>(){(a.IsDisposable ? ".AsDisposable()" : string.Empty)};"
             );
 
             return string.Join($"\n{Tab(indent)}", str);
