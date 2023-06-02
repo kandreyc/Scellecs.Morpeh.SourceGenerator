@@ -1,8 +1,6 @@
 using System.Collections.Immutable;
-using System.Linq;
-using Microsoft.CodeAnalysis;
 
-namespace Scellecs.Morpeh.SourceGenerator.Aspect.Core.Extensions;
+namespace Scellecs.Morpeh.SourceGenerator.Core.Extensions;
 
 internal static class AttributeDataExtensions
 {

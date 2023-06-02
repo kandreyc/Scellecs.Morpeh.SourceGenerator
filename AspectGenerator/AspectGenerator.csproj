@@ -5,10 +5,10 @@
         <IncludeBuildOutput>false</IncludeBuildOutput>
         <DevelopmentDependency>true</DevelopmentDependency>
         <IsRoslynComponent>true</IsRoslynComponent>
-        <AssemblyName>Scellecs.Morpeh.SourceGenerator.Aspect</AssemblyName>
+        <AssemblyName>Scellecs.Morpeh.SourceGenerator.AspectGenerator</AssemblyName>
         <Nullable>enable</Nullable>
         <TargetFramework>netstandard2.1</TargetFramework>
-        <RootNamespace>Scellecs.Morpeh.SourceGenerator.Aspect</RootNamespace>
+        <RootNamespace>Scellecs.Morpeh.SourceGenerator.AspectGenerator</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -18,5 +18,7 @@
     <ItemGroup>
         <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
     </ItemGroup>
+
+    <Import Project="..\Core\Core.projitems" Label="Shared" />
 
 </Project>

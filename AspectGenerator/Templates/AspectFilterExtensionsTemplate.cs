@@ -1,23 +1,22 @@
-using Scellecs.Morpeh.SourceGenerator.Aspect.Core;
-using Scellecs.Morpeh.SourceGenerator.Aspect.Model;
-
-namespace Scellecs.Morpeh.SourceGenerator.Aspect.Templates;
+namespace Scellecs.Morpeh.SourceGenerator.AspectGenerator.Templates;
 
 public static class AspectFilterExtensionsTemplate
 {
     public static GeneratedFile GenerateFile()
     {
+        const string @namespace = "Scellecs.Morpeh.SourceGenerator.AspectGenerator";
+
         return new GeneratedFile
         {
-            FileName = "AspectFilterExtensions.g.cs",
-            Content = """
+            FileName = $"{@namespace}.AspectFilterExtensions.g.cs",
+            Content = $$"""
 using Scellecs.Morpeh;
 
-namespace Scellecs.Morpeh.SourceGenerator.Aspect
+namespace {{@namespace}}
 {
     public static class AspectFilterExtensions
     {
-        public static FilterBuilder With<T>(this FilterBuilder filter) where T : struct, IAspect, IFilterExtension
+        public static FilterBuilder WithAspect<T>(this FilterBuilder filter) where T : struct, IAspect, IFilterExtension
         {
             return filter.Extend<T>();
         }

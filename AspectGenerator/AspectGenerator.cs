@@ -1,18 +1,10 @@
-using System.Linq;
-using System.Threading;
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Scellecs.Morpeh.SourceGenerator.Aspect.Core;
-using Scellecs.Morpeh.SourceGenerator.Aspect.Core.Extensions;
-using Scellecs.Morpeh.SourceGenerator.Aspect.Model;
-using Scellecs.Morpeh.SourceGenerator.Aspect.Templates;
-
-namespace Scellecs.Morpeh.SourceGenerator.Aspect;
+namespace Scellecs.Morpeh.SourceGenerator.AspectGenerator;
 
 [Generator]
 public class AspectGenerator : IncrementalGenerator<AspectData>
 {
+    private const string DisposableInterface = "System.IDisposable";
+
     protected override void OnPostInitialize()
     {
         AddPostInitializeSource(AspectInterfacesTemplate.GenerateFile());
@@ -42,7 +34,7 @@ public class AspectGenerator : IncrementalGenerator<AspectData>
         return symbol is INamedTypeSymbol typeSymbol && typeSymbol.Interfaces.Any(IsAspectInterface);
     }
 
-    protected override AspectData Select(ISymbol symbol)
+    protected override AspectData Select(SyntaxNode _, ISymbol symbol, SemanticModel __)
     {
         var typeSymbol = (INamedTypeSymbol)symbol;
         var aspectInterface = typeSymbol.Interfaces.First(IsAspectInterface);
@@ -52,7 +44,8 @@ public class AspectGenerator : IncrementalGenerator<AspectData>
                 NamePascalCase = p.Name,
                 Type = p.ToDisplayString(),
                 Namespace = p.GetNamespaceName(),
-                NameCamelCase = p.Name.FirstLetterLowerCase()
+                NameCamelCase = p.Name.FirstLetterLowerCase(),
+                IsDisposable = p.AllInterfaces.Any(i => i.ToDisplayString() == DisposableInterface)
             })
             .Distinct()
             .ToArray();
@@ -68,7 +61,7 @@ public class AspectGenerator : IncrementalGenerator<AspectData>
     private static bool IsAspectInterface(INamedTypeSymbol symbol)
     {
         const string @name = "IAspect";
-        const string @namespace = "Scellecs.Morpeh.SourceGenerator.Aspect";
+        const string @namespace = "Scellecs.Morpeh.SourceGenerator.AspectGenerator";
 
         return symbol is { IsGenericType: true, Name: @name, ContainingNamespace: not null } 
                && symbol.GetNamespaceName() is @namespace;

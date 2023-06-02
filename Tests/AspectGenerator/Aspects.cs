@@ -1,10 +1,15 @@
-﻿using Scellecs.Morpeh.SourceGenerator.Aspect;
+﻿using Scellecs.Morpeh.SourceGenerator.AspectGenerator;
+using Tests.AspectGenerator;
 
-namespace Tests.AspectGenerator;
+namespace Tests.AspectGenerator.Aspect2Namespace
+{
+    public partial struct Aspect2 : IAspect<Test1, Test2> { }
+}
 
-public partial struct Aspect2 : IAspect<Test1, Test2> { }
-
-public partial struct Aspect3 : IAspect<Test1, Test2, Test3> { }
+namespace Tests.AspectGenerator.Aspect3Namespace
+{
+    public partial struct Aspect3 : IAspect<Test1, Test2, Test3> { }
+}
 
 public partial struct Aspect4 : IAspect<Test1, Test2, Test3, Test4> { }
 

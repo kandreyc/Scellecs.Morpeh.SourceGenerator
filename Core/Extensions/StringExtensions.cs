@@ -1,4 +1,4 @@
-namespace Scellecs.Morpeh.SourceGenerator.Aspect.Core.Extensions;
+namespace Scellecs.Morpeh.SourceGenerator.Core.Extensions;
 
 public static class StringExtensions
 {

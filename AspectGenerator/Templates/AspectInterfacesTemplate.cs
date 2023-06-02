@@ -1,7 +1,4 @@
-using Scellecs.Morpeh.SourceGenerator.Aspect.Core;
-using Scellecs.Morpeh.SourceGenerator.Aspect.Model;
-
-namespace Scellecs.Morpeh.SourceGenerator.Aspect.Templates;
+namespace Scellecs.Morpeh.SourceGenerator.AspectGenerator.Templates;
 
 public static class AspectInterfacesTemplate
 {
@@ -13,7 +10,7 @@ public static class AspectInterfacesTemplate
             Content = """
 using Scellecs.Morpeh;
 
-namespace Scellecs.Morpeh.SourceGenerator.Aspect
+namespace Scellecs.Morpeh.SourceGenerator.AspectGenerator
 {
     public interface IAspect<T1, T2> : IAspect, IFilterExtension
         where T1 : struct, IComponent

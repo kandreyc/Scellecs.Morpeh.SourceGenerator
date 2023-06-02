@@ -13,6 +13,9 @@
     <ItemGroup>
       <ProjectReference Include="..\AspectGenerator\AspectGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\FilterSystemGenerator\FilterSystemGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.3">

@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using Scellecs.Morpeh.SourceGenerator.Aspect.Core;
 
-namespace Scellecs.Morpeh.SourceGenerator.Aspect.Logger;
+namespace Scellecs.Morpeh.SourceGenerator.Core.Logger;
 
 public class Logger
 {
