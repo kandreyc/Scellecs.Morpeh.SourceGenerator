@@ -87,9 +87,6 @@ public class FilterSystemGenerator : IncrementalGenerator<SystemInfo>
 
     protected override void Generate(SystemInfo systemInfo)
     {
-        // if (systemInfo.Filters.Length is not 0)
-        {
-            AddSource(PartialImplTemplate.GenerateFile(systemInfo));
-        }
+        AddSource(PartialImplTemplate.GenerateFile(systemInfo));
     }
 }
